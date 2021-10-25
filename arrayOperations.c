@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// Function to populate the array, initially
 int inputArr(int arr[], int size){
     for (int i = 0; i < size; i++){
         printf("Enter the value for element no. %d - ", i + 1);
@@ -8,12 +9,14 @@ int inputArr(int arr[], int size){
     return 1;
 }
 
+// Traversal
 void displayArr(int arr[], int size){
     printf("\n\nThe elements of your array are listed below:\n");
     for (int i = 0; i < size; i++)
     printf("Element no. %d --> %d\n", i + 1, arr[i]);
 }
 
+// Insertion
 int insertArr(int arr[], int size){
     int response;
     printf("How many elements do you want to insert?\nYour response: ");
@@ -22,6 +25,7 @@ int insertArr(int arr[], int size){
     for (int i = 0; i < response; i++){
         printf("\nEnter the index position (one at a time in case of more than one insertion): ");
         scanf("%d", &indices[i]);
+        // Check whether the index entered is valid (i.e. non-negative) and whether the user is attempting to insert at an index greater than the value of size
         if (indices[i] >= 0 && indices[i] <= size){
             printf("Enter the element (one at a time in case of more than one insertion): ");
             scanf("%d", &elements[i]);
@@ -47,6 +51,7 @@ int insertArr(int arr[], int size){
     return size;
 }
 
+// Deletion
 int deleteArr(int arr[], int size){
     int response;
     printf("How many elements do you want to delete?\nYour response: ");
@@ -72,6 +77,7 @@ int deleteArr(int arr[], int size){
     return size;
 }
 
+// Searching
 void searchArr(int arr[], int size){
     int response, binSearch = 0, found = 0, low = 0, mid, high = size - 1;
     printf("How many elements do you want to search?\nYour response: ");
@@ -82,6 +88,7 @@ void searchArr(int arr[], int size){
         printf("Enter the element to be searched (one at a time in case of more than one element(s)): ");
         scanf("%d", &elements[i]);
     }
+    // Whether the array is sorted in ascending order
     for (int i = 0; i < size; i++){
         if (arr[i] < arr[i + 1])
         binSearch = 1;
@@ -90,6 +97,7 @@ void searchArr(int arr[], int size){
             break;
         }
     }
+    // Whether the array is sorted in descending order
     if (binSearch == 0){
         for (int i = 0; i < size; i++){
             if (arr[i] > arr[i + 1])
@@ -100,6 +108,7 @@ void searchArr(int arr[], int size){
             }
         }
     }
+    // Binary Search (if the array is sorted in ascending order)
     if (binSearch == 1){
         for (int i = 0; i < response; i++){
             while (low <= high){
@@ -120,6 +129,7 @@ void searchArr(int arr[], int size){
             found = 0;
         }
     }
+    // Binary Search (if the array is sorted in descending order)
     else if (binSearch == 2){
         for (int i = 0; i < response; i++){
             while (low <= high){
@@ -140,6 +150,7 @@ void searchArr(int arr[], int size){
             found = 0;
         }
     }
+    // Linear Search for an unsorted array
     else{
         for (int i = 0; i < response; i++){
             for (int j = 0; j < size; j++){
@@ -162,6 +173,7 @@ int main(){
     printf("---------- WELCOME FOLK!!! ----------\n\nThis program is meant to implement the below-mentioned operations in array:-\n1. Traversal\n2. Insertion\n3. Deletion\n4. Searching\n\nNote that an integer array of size '50' has just been created internally.\n\nNow the array has been created but it's empty. So let's fill it with numbers.\n");
     printf("Enter the number of elements to be used: ");
     scanf("%d", &size);
+    // Check if the value of the size entered is not exceeding the capacity of the array
     if (size <= 50){
         printf("\n");
         int value = inputArr(arr, size);
