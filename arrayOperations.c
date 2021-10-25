@@ -36,6 +36,7 @@ int insertArr(int arr[], int size){
         }
     }
     for (int i = 0; i < response; i++){
+        // Check for whether or not the array is full
         if (size < 50){
             for (int j = size - 1; j >= indices[i]; j--){
                 arr[j + 1] = arr[j];
@@ -63,6 +64,7 @@ int deleteArr(int arr[], int size){
         scanf("%d", &indices[i]);
     }
     for (int i = 0; i < response; i++){
+        // Whether the desired index at which the deletion operation is to be performed is present in the array
         if (indices[i] < size){
             for (int j = indices[i]; j < size - 1; j++){
                 arr[j] = arr[j + 1];
